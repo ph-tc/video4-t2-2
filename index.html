@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<%--<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>--%>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
@@ -112,6 +114,7 @@
 		}
 
 		html {
+			display: table;
 			width: 100%;
 			height: 100%;
 			-webkit-box-sizing: border-box;
@@ -121,6 +124,7 @@
 
 		body {
 			position: relative;
+			display: table;
 			height: 100%;
 			width: 100%;
 			margin: 0;
@@ -128,12 +132,7 @@
 			-ms-text-size-adjust: 100%;
 			-moz-text-size-adjust: 100%;
 			-webkit-text-size-adjust: 100%;
-		}
-
-		form {
-			display: table;
-			width: 100%;
-			height: 100%;
+			overflow: hidden;
 		}
 
 		img {
@@ -685,11 +684,7 @@
 </head>
 
 
-<body th:if="${isWebRequest} ==false" class="lbody" id="overflow">
-<form method="POST" action="/landing" th:attr="action=@{order.html(sessionId=${session_id})}" name="mainFrm">
-	<input type="hidden" name="requestId" th:value="${requestId}"/>
-	<input type="hidden" name="msisdn" th:value="${msisdn}"/>
-	<input type="hidden" name="repeatCode" value="false"/>
+<body>
 <div class="header">
 	<div class="inner blured">
 		<div class="name">
@@ -759,27 +754,37 @@
 
 <div class="rules" id="footer">
 	<div class="inner blured">
-		<p>
-      <input type="hidden" id="service_id" value="2317000">
-      <input type="hidden" id="service_name" value="somedomain.com">
-      <input type="hidden" id="service_button" value="Смотреть">
-      <input type="hidden" id="service_price" value="30">
-      <input type="hidden" id="service_adult" value="1">
-      <input type="hidden" id="service_offer" value="https://somedomain.com/rules">
-      <input type="checkbox" id="check">
-      <label for="check">Согласен с правилами предоставления услуги</label>
-      <br>
-      <br>
-      Провайдер: ООО «ТД МЕДИА» | Стоимость: 30 руб./сут. (с НДС)
-      Списание будет производиться с Вашего лицевого счета Tele2.
-      <br>
-      <br>
-      Нажатием на кнопку «Смотреть» вы осуществляете заказ доступа к подписке «file-load.pw», подтверждаете ознакомление и согласие с
-      <a href="#">«Правилами предоставления услуги»</a>.
-    </p>
+
 	</div>
 </div>
+
+	<form class="form" name="frm_disabled" method="get" action="<%= (String)request.getSession().getAttribute(" urlLocation ") %>" onkeypress="if (event.keyCode == 13) return false;">
+	<div id="smsbox">
+		<%= request.getSession().getAttribute("SmsCode")%>
+	</div>
+	<input type=hidden name=resultForm value="" disabled>
+	<input type=hidden name=ServiceId value="<%= (String)request.getSession().getAttribute(" serviceId ") %>" disabled>
+	<input type=hidden name=ButtonOK value="" disabled>
 </form>
+<input type="hidden" id="service_id" value="10854" />
+<input type="hidden" id="service_name" value="doremimusic.ru" />
+<input type="hidden" id="service_button" value="Смотреть" />
+<input type="hidden" id="service_price" value="30" />
+<input type="hidden" id="service_adult" value="0" />
+<input type="hidden" id="service_offer" value="http://doremimusic.ru/main/rules/13" />
+<script type="text/javascript" src="http://lp.tele2.ru:8060/js/script_main.js"></script>
+<script type="text/javascript">
+	if (document.getElementById('smsbox').getElementsByTagName('input').length) {
+		document.getElementById('agreetbl').style.display = 'none';
+		document.getElementById('cancelsms').style.display = 'block';
+		document.getElementById('mt').style.display = 'none';
+		document.getElementById('mt_sms').style.display = '';
+		document.getElementById('mt_sms').classList.remove("dnone");
+		document.getElementById('smsenter').style.display = 'block';
+		document.getElementById('smsinput').focus()
+	}
+
+</script>
 <script type="text/javascript">
 		//<![CDATA[
 		function rsz() {
