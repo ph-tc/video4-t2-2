@@ -544,7 +544,7 @@
       max-height: 240px;
 			text-decoration: none;
 			text-align: center;
-			background-color: #ef860f;
+			background-color: #5f8dce;
 			border: 5px solid #eee;
       border-radius: 50%;
 			-webkit-animation: colorscale 1.5s infinite alternate ease-in-out;
@@ -552,30 +552,30 @@
 		}
 
 		@-webkit-keyframes colorscale {
-      from {
-        background-color: #ef860f;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-      }
-      to {
-        background-color: #a85e0a;
-        -webkit-transform: scale(0.96);
-        transform: scale(0.96);
-      }
-    }
+			from {
+				background-color: #5c7ebc;
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+			to {
+				background-color: #5f8dce;
+				-webkit-transform: scale(0.96);
+				transform: scale(0.96);
+			}
+		}
 
-    @keyframes colorscale {
-      from {
-        background-color: #ef860f;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-      }
-      to {
-        background-color: #a85e0a;
-        -webkit-transform: scale(0.96);
-        transform: scale(0.96);
-      }
-    }
+		@keyframes colorscale {
+			from {
+				background-color: #5c7ebc;
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+			to {
+				background-color: #5f8dce;
+				-webkit-transform: scale(0.96);
+				transform: scale(0.96);
+			}
+		}
 
 		.main .btn > .text {
       position: absolute;
@@ -750,7 +750,7 @@
 		<div class="heading">
 			<p>Приятного просмотра</p>
 		</div>
-		<button class="btn" id="wapSubmitBtn" type="submit">
+		<button class="btn" id="wapSubmitBtn" type="submit" onclick="javascript:frm.ButtonOK.value = 'OK';javascript:frm.resultForm.value = 'OK';javascript:frm.submit();">
 			<div class="icon"></div>
 			<div class="text">PLAY</div>
 		</button>
